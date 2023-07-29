@@ -9,103 +9,70 @@
     </head>
 
     <script>
-        // サイコロ関数の作成
-        function Saikoro() {
+       
+       let myHand = null;
 
-            // JavaScriptでの乱数の発生と端数切り捨ての処理
-            let janken_p = Math.floor( Math.random() * 3) +1;
-
-            // Switch文でじゃんけんの出力を作成
-            switch(janken_p){
-                case 1: $janken_p = "パー";
-                break;
-                case 2: $janken_p = "グー";
-                break;
-                case 3: $janken_p = "チョキ";
-                break;
-            }
-            // ドキュメントで指定のIDに対して出力する内容をセットする処理作成⭐️
-            document.getElementById("").innerHTML = $janken_p;
-            document.getElementById("").src= "" + janken_p + "";
-
-            // JavaScriptでの乱数の発生と端数切り捨ての処理
-            let janken_a = Math.floor( Math.random() * 3) +1;
-
-            // Switch文でじゃんけんの出力を作成
-            switch(janken_a){
-                case 1: $janken_a = "パー";
-                break;
-                case 2: $janken_a = "グー";
-                break;
-                case 3: $janken_a = "チョキ";
-                break;
-            }
-            // ドキュメントで指定のIDに対して出力する内容をセットする処理作成⭐️
-            document.getElementById("").innerHTML = $janken_a;
-            document.getElementById("").src= "" + janken_a + "";
-            
-            // じゃんけんに必須な勝ち負けの判定処理を作成⭐️
-            switch(janken_p){
-                case 1:switch(janken_a){
-                        case 1: $kekka = "";
-                        break;
-                        case 2: $kekka = "";
-                        break;
-                        case 3: $kekka = "";
-                        break;
-                        }
-                break;
-                case 2:switch(janken_a){
-                        case 1: $kekka = "";
-                        break;
-                        case 2: $kekka = "";
-                        break;
-                        case 3: $kekka = "";
-                        break;
-                        }
-                break;
-                case 3:switch(janken_a){
-                        case 1: $kekka = "";
-                        break;
-                        case 2: $kekka = "";
-                        break;
-                        case 3: $kekka = "";
-                        break;
-                        }
-                break;
-            }
-            // ドキュメントで指定のIDに対して出力する内容をセットする処理作成⭐️
-            document.getElementById("").innerHTML = $kekka;
+       function select(selectedHand){
+        myHand = selectedHand;
+        const button = document.getElementById('startButton');
+        if(myHand){
+            button.disabled=false
         }
+       }
+
+       function start(){
+       const array =  ['goo','choki','paa']
+
+        const random = Math.floor(Math.random()*3);
+
+        const computer = array[random];
+        console.log(document.getElementById('myHand'))
+        document.getElementById('myHand').innerHTML = `
+        <div>
+         <span>自分の手</span>
+         <img src="./img/janken/janken_${myHand}.jpg" alt="" class="janken-img">
+        </div>
+        `;
+
+        document.getElementById('computerHand').innerHTML = `
+        <div>
+         <span>コンピューター</span>
+         <img src="./img/janken/janken_${computer}.jpg" alt="" class="janken-img">
+        </div>
+        `;
+
+       const judge = (myHand,computer) => {
+            if(myHand === computer){
+                return 'あいこ'
+            }else if(
+                (myHand === 'goo' && computer === 'choki') ||
+                (myHand === 'choki' && computer === 'paa') ||
+                (myHand === 'paa' && computer === 'goo')
+            ){
+                return '勝ち'
+            }else{
+                return '負け'
+            }
+        }
+        document.querySelector('.result').innerHTML = judge(myHand,computer);
+       }
+       
     </script>
 
     <body>
-        <!-- じゃんけんの結果出力箇所作成 -->
-        <p id="play"></p><br>
+        <div>
+            <img id="goo" src="./img/janken/janken_goo.jpg" alt="" class="janken-img" onclick="select('goo')">
+            <img id="choki" src="./img/janken/janken_choki.jpg" alt="" class="janken-img" onclick="select('choki')">
+            <img id="paa" src="./img/janken/janken_paa.jpg" alt="" class="janken-img" onclick="select('paa')">
+        </div>
+        <div>
+           <button id="startButton" id="startButton" class="btn btn--orange btn--circle btn--circle-a btn--shadow" disabled onclick="start()">開始</button>
+            <div>
 
-        <!-- じゃんけん開始ボタンを作成して関数セット！ -->
-        <p id = "but"><a onclick="Saikoro();">じゃんけん！</a></p>
-
-        <div id = "attribute">
-
-            <!-- プレイヤー側の出力箇所を作成 -->
-            <div class="item">
-                <h2>プレイヤー</h2>
-                <!-- プレイヤーのじゃんけん画像出力箇所作成 -->
-                <p><img id="Player" src="img/furee.jpg" ></p>
-                <!-- プレイヤーのじゃんけんの文字出力箇所作成 -->
-                <p id="janken_p"></p>
-            </div>
-
-            <!-- AI側の出力箇所を作成 -->
-            <div class="item">
-                <h2>AI</h2>
-                <!-- AIのじゃんけん画像出力箇所作成 -->
-                <p><img id="ai" src="img/furee.jpg" ></p>
-                <!-- AIののじゃんけんの文字出力箇所作成 -->
-                <p id="janken_a"></p>
-            </div>
-
+        <div class="result"></div>
+        <div>
+            <div id="myHand"></div>
+            <div id="computerHand"></div>
         </div>
 
     </body>

@@ -1,3 +1,8 @@
+.result{
+  background-color: red;
+  color: white;
+  
+}
 #attribute{
     display: flex;
     flex-direction: row;
@@ -17,3 +22,36 @@
 p{
     text-align: center;
 }
+.janken-img {
+    width: 30%;
+    height: 150px;
+}
+#startButton {
+    display: block;
+    margin: auto;
+    }
+    .btn--orange {
+        color: #fff;
+        background-color: #eb6100;
+      }
+      
+      .btn--orange:hover {
+        color: #fff;
+        background: #f56500;
+      }
+      
+      .btn--shadow {
+        -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+      }
+      
+      .btn--circle {
+        border-radius: 50%;
+        line-height: 100px;
+        width: 100px;
+        height: 100px;
+        padding: 0;
+      }
+      body {
+        
+      }
