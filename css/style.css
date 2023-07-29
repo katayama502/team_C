@@ -1,7 +1,7 @@
 .result{
   background-color: red;
   color: white;
-  
+
 }
 #attribute{
     display: flex;
@@ -35,7 +35,7 @@ p{
         background-color: #eb6100;
       }
       
-      .btn--orange:hover {
+      .btn--orange:hover :not(:disabled) {
         color: #fff;
         background: #f56500;
       }
@@ -55,3 +55,9 @@ p{
       body {
         
       }
+
+  *:disabled {
+    background-color: dimgrey;
+    color: linen;
+    opacity: 1;
+}
